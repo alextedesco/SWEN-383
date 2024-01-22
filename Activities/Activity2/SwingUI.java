@@ -108,8 +108,4 @@ public class SwingUI extends JFrame {
 
         return label ;
     }
-
-    public static void main(String[] args) {
-        SwingUI sui = new SwingUI();
-    }
 }

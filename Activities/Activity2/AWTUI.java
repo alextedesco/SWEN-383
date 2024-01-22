@@ -94,8 +94,4 @@ public class AWTUI extends Frame {
 
         return label ;
     }
-
-    public static void main(String[] args) {
-        AWTUI awt = new AWTUI();
-    }
 }
