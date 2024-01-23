@@ -59,7 +59,7 @@ public class WeatherStation implements Runnable {
              * See docs.oracle.com/javase/tutorial/java/data/numberformat.html
              * for more information on formatting output.
              */
-            //
+            
             /*
              * Set the textFields in the GUIs
              */
@@ -67,6 +67,7 @@ public class WeatherStation implements Runnable {
             sui.setCelsiusJLabel(celsius);
             awtui.kelvinField.setText(String.valueOf((kelvin)));
             awtui.celsiusField.setText(String.valueOf(celsius));
+            
             /*
              * Outputs the temperature readings to the terminal
              */

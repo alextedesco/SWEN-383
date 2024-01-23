@@ -1,4 +1,4 @@
-Solution was done in the main function of WeatherStation.java
+Solution was done in WeatherStation.java
 
 To run my solution:
     1. In the terminal run "javac .\WeatherStation.java"
