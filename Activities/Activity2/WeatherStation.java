@@ -8,11 +8,9 @@
  * which runs the periodic sensing.
  */
 
-import java.util.Scanner;
-
 public class WeatherStation implements Runnable {
 
-    private static KelvinTempSensor sensor ; // Temperature sensor.
+    private final KelvinTempSensor sensor ; // Temperature sensor.
 
     private final long PERIOD = 1000 ;      // 1 sec = 1000 ms.
 
@@ -33,6 +31,9 @@ public class WeatherStation implements Runnable {
         int reading ;           // actual sensor reading.
         double celsius ;        // sensor reading transformed to celsius
         final int KTOC = -27315 ;   // Convert raw Kelvin reading to Celsius
+        
+        SwingUI sui = new SwingUI(); // SwingUI
+        AWTUI awtui = new AWTUI(); // AWTUI
 
         while( true ) {
             try {
@@ -41,6 +42,7 @@ public class WeatherStation implements Runnable {
 
             reading = sensor.reading() ;
             celsius = (reading + KTOC) / 100.0 ;
+            double kelvin = (reading / 100.0);
             /*
              * System.out.printf prints formatted data on the output screen.
              *
@@ -58,8 +60,17 @@ public class WeatherStation implements Runnable {
              * for more information on formatting output.
              */
             //
-            System.out.printf("Reading is %6.2f degrees C", celsius) ;
-            double kelvin = (reading / 100.0);
+            /*
+             * Set the textFields in the GUIs
+             */
+            sui.setKelvinJLabel(kelvin);
+            sui.setCelsiusJLabel(celsius);
+            awtui.kelvinField.setText(String.valueOf((kelvin)));
+            awtui.celsiusField.setText(String.valueOf(celsius));
+            /*
+             * Outputs the temperature readings to the terminal
+             */
+            System.out.printf("Reading is %6.2f degrees C", celsius) ;   
             System.out.printf(" and %6.2f degrees K%n", kelvin) ;
         }
     }
@@ -72,45 +83,7 @@ public class WeatherStation implements Runnable {
      */
     public static void main(String[] args) {
         WeatherStation ws = new WeatherStation();
-        double reading;
-        Scanner s = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Select an option:  \n1. SwingUI\n2. AWTUI\n3. Text");
-            String option = s.nextLine(); 
-
-            if (option.equals("1")) {
-                SwingUI ui = new SwingUI();
-
-                while (true) {
-                    try {
-                        Thread.sleep (1000);
-                    } catch (Exception e) {
-                        System.err.println("Error");
-                    }
-                    reading = sensor.reading();
-                    ui.setKelvinJLabel((reading) / 100.0);
-                    ui.setCelsiusJLabel((reading + -27315) / 100.0);
-                }
-
-            } else if (option.equals("2")) {
-                AWTUI ui = new AWTUI();
-                
-                while (true) {
-                    try {
-                        Thread.sleep (1000);
-                    } catch (Exception e) {
-                        System.err.println("Error");
-                    }
-                    reading = sensor.reading();
-                    ui.kelvinField.setText(String.valueOf((reading) / 100.0));
-                    ui.celsiusField.setText(String.valueOf((reading + -27315) / 100.0));
-                }
-            } else if (option.equals("3")) {
-                ws.run();
-            } else {
-                System.out.println("Invalid input! Please try again");
-            }
-        }
+        Thread thread = new Thread(ws);
+        thread.start(); 
     }    
 }
