@@ -1,0 +1,5 @@
+Solution was done in the main function of WeatherStation.java
+
+To run my solution:
+    1. In the terminal run "javac .\WeatherStation.java"
+    2. In the terminal run "java .\WeatherStation.java"

@@ -90,7 +90,7 @@ public class WeatherStation implements Runnable {
                     }
                     reading = sensor.reading();
                     ui.setKelvinJLabel((reading) / 100.0);
-                    ui.setCelsiusJLabel((reading + -27315) / 100.0 );
+                    ui.setCelsiusJLabel((reading + -27315) / 100.0);
                 }
 
             } else if (option.equals("2")) {
