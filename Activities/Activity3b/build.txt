@@ -1,0 +1,7 @@
+To run my solution:
+    SwingUI:
+        1. In the terminal run "javac .\SwingUI.java"
+        2. In the terminal run "java .\SwingUI.java"
+    TextUI:
+        1. In the terminal run "javac .\TextUI.java"
+        2. In the terminal run "java .\TextUI.java"
