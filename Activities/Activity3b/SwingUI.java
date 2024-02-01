@@ -102,7 +102,7 @@ public class SwingUI extends JFrame implements Observer {
          */
         panel = new JPanel(new GridLayout(2,1)) ;
         this.add(panel) ;
-        createLabel(" Mercury ", panel) ;
+        createLabel(" Millibars ", panel) ;
         mercuryField = createLabel("", panel) ;
 
          /*
